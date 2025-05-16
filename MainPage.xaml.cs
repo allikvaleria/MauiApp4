@@ -4,8 +4,8 @@ namespace MauiApp4;
 
 public partial class MainPage : ContentPage
 {
-    public List<ContentPage> lehed = new List<ContentPage>() { new VeejalgiminePage(), new LounasookPage(), new OhtusookPage(), new VahepalaPage() };
-    public List<string> tekstid = new List<string> { "VeejalgiminePage", "LounasookPage", "OhtusookPage", "VahepalaPage" };
+    public List<ContentPage> lehed = new List<ContentPage>() { new VeejalgiminePage(), new LounasookPage(), new OhtusookPage(), new VahepalaPage(), new TreeningudPage() };
+    public List<string> tekstid = new List<string> { "VeejalgiminePage", "LounasookPage", "OhtusookPage", "VahepalaPage", "TreeningudPage" };
     ScrollView sv;
     VerticalStackLayout vsl;
     public MainPage()

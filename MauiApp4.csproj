@@ -66,4 +66,16 @@
 		<PackageReference Include="Syncfusion.Maui.Charts" Version="29.1.41" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiXaml Update="FlyoutMenuPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\TreeningudPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\UserTreeningudPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>

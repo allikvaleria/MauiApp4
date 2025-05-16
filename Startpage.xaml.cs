@@ -1,45 +1,30 @@
-using MauiApp4.View;
+using Microsoft.Maui.Controls;
+using MauiApp4.Models;
 
-namespace MauiApp4;
 
-public partial class Startpage : ContentPage
+namespace FlyoutPageNavigation;
+
+public class StartPage : FlyoutPage
 {
-    public List<ContentPage> lehed = new List<ContentPage>() { new VeejalgiminePage()};
-    public List<string> tekstid = new List<string> {"Tee lahti VeejalgiminePage"};
-    ScrollView sv;
-    VerticalStackLayout vsl;
-    public Startpage()
+    private FlyoutMenuPage flyoutPage;
+
+    public StartPage()
     {
-        Title = "Avaleht";
-        vsl = new VerticalStackLayout { BackgroundColor = Color.FromArgb("#FFC0CB") };
-        for (int i = 0; i < tekstid.Count; i++)
+        flyoutPage = new FlyoutMenuPage();
+        flyoutPage.MenuItemSelected += OnMenuItemSelected;
+
+        Flyout = flyoutPage;
+        Detail = new NavigationPage(new StartPage());
+    }
+
+    private void OnMenuItemSelected(object? sender, FlyoutClass selectedItem)
+    {
+        if (selectedItem?.TargetType != null)
         {
-            Button nupp = new Button
-            {
-                Text = tekstid[i],
-                BackgroundColor = Color.FromArgb("#EE82EE"),
-                TextColor = Color.FromArgb("#FF00FF"),
-                BorderWidth = 10,
-                ZIndex = i,
-                FontFamily = "Luckymoon 400",
-                FontSize = 28
-            };
-            vsl.Add(nupp);
-            nupp.Clicked += Lehte_avamine;
+            Detail = new NavigationPage((Page)Activator.CreateInstance(selectedItem.TargetType)!);
+
+            if (!((IFlyoutPageController)this).ShouldShowSplitMode)
+                IsPresented = false;
         }
-        sv = new ScrollView { Content = vsl };
-        Content = sv;
-
-    }
-
-    private async void Lehte_avamine(object? sender, EventArgs e)
-    {
-        Button btn = (Button)sender;
-        await Navigation.PushAsync(lehed[btn.ZIndex]);
-    }
-
-    private async void Tagasi_Clicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new MainPage());
     }
 }
